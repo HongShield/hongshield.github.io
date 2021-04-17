@@ -1,206 +1,282 @@
-# hongshield.github.io
-# 原生Js实现轮播图
-@[TOC](文章目录)
-# 前言
-最近决心重新学习一次js，打牢基础，先从最常见的轮播图开始。
-# 一、轮播图是什么？
-顾名思义，就是轮流播放的图片，多应用在电商平台的海报，当我们进入一个网页中，轮播图一般是是最醒目的。
-# 二、Html+Css
-因为我们主要是实现滚动的功能，html和css就简单的说一下，轮播图一般包括三块内容，轮播的海报，海报两边的箭头，底部的圆圈。如下图：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20201201165342361.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L014X3pI,size_16,color_FFFFFF,t_70)
-## 1.html结构
-轮播的图片可以放在<kbd>ul</kbd>列表当中，两侧的箭头用<kbd>a</kbd>标签，底部的圆圈用<kbd>ol</kbd>列表，放到一个 <kbd>div</kbd>标签中。
-箭头和圆圈是通过雪碧图引入。
-```html
- <div class="slideshow">
-        <ul>
-            <li><a href="#"><img src="./img/1.jpg" alt=""></a></li>
-            //...
-        </ul>
 
-        <div class="nav">
-            <ol class="circle">
-            //ol 中的li使用js动态生成，这样便于后期的维护
-            </ol>
-            <a href="javascript:;" class="left"></a>
-            <a href="javascript:;" class="right"></a>
-        </div>
-    </div>
-```
-## 2.css
-轮播图一定不止一张，我们可以观察到轮播图变化的时候，方向是左右变换，因此我们就需要将所有图片放到一行上面，这时候只需要改变父容器的宽度就可以。
-```css
-.slideshow ul{
-    position: absolute;
-    width: 600%;
-    height: 100%; // 可以省略
-}
-```
-为了方便定位圆圈以及箭头的位置，我们可以先在htmll中写上 <kbd>li</kbd>标签，等定位好以后在删除。剩下的就是雪碧图的应用了
-# 三、 Js
-### 1.做出鼠标移动到轮播图区域中箭头显示的效果 
-要实现这一效果，只需要将对应选择器的样式从 <kbd>display:block</kbd>
-改为 <kbd>display:none</kbd>就可以，要复原的话，当鼠标离开区域的时候在将属性改回来就行。有1个知识点需要注意：
-- 在进行事件绑定，鼠标移入：mouseenter  鼠标移除：mouseleave
-```javascript
-window.addEventListener("load", function(){
-// load 目的是为了让页面加载完成之后，在加载js
-    var left = document.querySelector('.left');
-    var right = document.querySelector('.right');
-    var slideshow = document.querySelector('.slideshow');
-    //slideshow 是整个轮播图的父容器
-    slideshow.addEventListener('mouseenter', function(){
-        left.style.display = 'block';
-        right.style.display = 'block';
-    })
 
-    slideshow.addEventListener('mouseleave', function(){
-        left.style.display = 'none';
-        right.style.display = 'none';
-    })
-})
-```
-### 2.动态生成圆圈
- 要动态生成圆圈，必须要和图片的数量进行绑定，就要获取<kbd>ul</kbd>标签，通过<kbd>ul.children.length</kbd>来得到圆圈的数量
-```javascript
-    var ul = document.querySelector('ul');
-    var ol = document.querySelector('.circle');
+![](https://raw.githubusercontent.com/qiubaiying/qiubaiying.github.io/master/img/readme-home.png)
 
-    for(var i = 0; i < ul.children.length;i++){
-        //创建li
-        var li = document.createElement('li');
-        //将li插入到 ol 当中
-        ol.appendChild(li);
-        //给 第一个 li 绑定样式
-        ol.children[0].className = 'current';
+[![Build Status](https://travis-ci.org/qiubaiying/qiubaiying.github.io.svg?branch=master)](https://travis-ci.org/qiubaiying/qiubaiying.github.io)
+[![codebeat badge](https://codebeat.co/badges/5f031df3-f6c1-4ec0-911a-ff6617ca50b9)](https://codebeat.co/projects/github-com-qiubaiying-qiubaiying-github-io-master)
+[![GitHub issues](https://img.shields.io/github/issues/qiubaiying/qiubaiying.github.io.svg?style=flat)](https://github.com/qiubaiying/qiubaiying.github.io/issues)
+[![License MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/home-assistant/home-assistant-iOS/blob/master/LICENSE)
+[![](https://img.shields.io/github/stars/qiubaiying/qiubaiying.github.io.svg?style=social&label=Star)](https://github.com/qiubaiying/qiubaiying.github.io)
+[![](https://img.shields.io/github/forks/qiubaiying/qiubaiying.github.io.svg?style=social&label=Fork)](https://github.com/qiubaiying/qiubaiying.github.io)
+
+
+博客的搭建教程修改自 [Hux](https://github.com/Huxpro/huxpro.github.io) 
+ 
+更为详细的教程戳这 [《利用 GitHub Pages 快速搭建个人博客》](http://www.jianshu.com/p/e68fba58f75c) 或 [wiki](https://github.com/qiubaiying/qiubaiying.github.io/wiki/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B)
+
+>
+### [查看博客戳这里 👆](http://qiubaiying.github.io)
+
+
+
+## 使用
+
+* 开始
+	* [环境](#环境)
+	* [开始](#开始)
+	* [撰写博文](#撰写博文)
+* 组件
+	* [侧边栏](#侧边栏)
+	* [迷你关于我](#mini-about-me)
+	* [推荐标签](#featured-tags)
+	* [好友链接](#friends)
+	* [HTML5 演示文档布局](#keynote-layout)
+* 评论与 Google/Baidu Analytics
+	* [评论](#comment)
+	* [网站分析](#analytics) 
+* 高级部分
+	* [自定义](#customization)
+	* [标题底图](#header-image)
+	* [搜索展示标题-头文件](#seo-title)
+
+
+
+### 环境
+
+如果你安装了 [jekyll](http://jekyllcn.com/)，那你只需要在命令行输入`jekyll serve` 或 `jekyll s`就能在本地浏览器中输入`http://127.0.0.1:4000/`预览主题，对主题的修改也能实时展示（需要强刷浏览器）。
+
+
+
+### 开始
+
+你可以通用修改 `_config.yml`文件来轻松的开始搭建自己的博客:
+
+```
+# Site settings
+title: BY Blog                    # 你的博客网站标题
+SEOTitle: 柏荧的博客 | BY Blog		# SEO 标题
+description: "Hey"	   	   # 随便说点，描述一下
+
+# SNS settings      
+github_username: qiubaiying     # 你的github账号
+jianshu_username: e71990ada2fd  # 你的简书ID。
+
+# Build settings
+# paginate: 10              # 一页你准备放几篇文章
+```
+
+Jekyll官方网站还有很多的参数可以调，比如设置文章的链接形式...网址在这里：[Jekyll - Official Site](http://jekyllrb.com/) 中文版的在这里：[Jekyll中文](http://jekyllcn.com/).
+
+### 撰写博文
+
+要发表的文章一般以 **Markdown** 的格式放在这里`_posts/`，你只要看看这篇模板里的文章你就立刻明白该如何设置。
+
+yaml 头文件长这样:
+
+```
+---
+layout:     post
+title:      定时器 你真的会使用吗？
+subtitle:   iOS定时器详解
+date:       2016-12-13
+author:     BY
+header-img: img/post-bg-ios9-web.jpg
+catalog: 	 true
+tags:
+    - iOS
+    - 定时器
+---
+
+```
+
+### 侧边栏
+
+看右边:
+![](https://raw.githubusercontent.com/qiubaiying/qiubaiying.github.io/master/img/readme-side.png)
+
+设置是在 `_config.yml`文件里面的`Sidebar settings`那块。
+
+```
+# Sidebar settings
+sidebar: true  #添加侧边栏
+sidebar-about-description: "简单的描述一下你自己"
+sidebar-avatar: /img/avatar-by.jpg     #你的大头贴，请使用绝对地址.注意：名字区分大小写！后缀名也是
+```
+
+侧边栏是响应式布局的，当屏幕尺寸小于992px的时候，侧边栏就会移动到底部。具体请见bootstrap栅格系统 <http://v3.bootcss.com/css/>
+
+
+### Mini About Me
+
+Mini-About-Me 这个模块将在你的头像下面，展示你所有的社交账号。这个也是响应式布局，当屏幕变小时候，会将其移动到页面底部，只不过会稍微有点小变化，具体请看代码。
+
+### Featured Tags
+
+看到这个网站 [Medium](http://medium.com) 的推荐标签非常的炫酷，所以我将他加了进来。
+这个模块现在是独立的，可以呈现在所有页面，包括主页和发表的每一篇文章标题的头上。
+
+```
+# Featured Tags
+featured-tags: true  
+featured-condition-size: 1     # A tag will be featured if the size of it is more than this condition value
+```
+
+唯一需要注意的是`featured-condition-size`: 如果一个标签的 SIZE，也就是使用该标签的文章数大于上面设定的条件值，这个标签就会在首页上被推荐。
+ 
+内部有一个条件模板 `{% if tag[1].size > {{site.featured-condition-size}} %}` 是用来做筛选过滤的.
+
+### Social-media Account
+
+在下面输入的社交账号，没有的添加的不会显示在侧边框中。新加入了[简书](https:/www.jianshu.com)链接, <http://www.jianshu.com/u/e71990ada2fd>
+
+	# SNS settings
+	RSS: false
+	jianshu_username: 	jianshu_id 
+	zhihu_username:     username
+	facebook_username:  username
+	github_username:    username
+	# weibo_username:   username
+	
+	
+
+![](http://ww4.sinaimg.cn/large/006tKfTcgy1fgrgbgf77aj308i02v748.jpg)
+
+### Friends
+
+好友链接部分。这会在全部页面显示。
+
+设置是在 `_config.yml`文件里面的`Friends`那块，自己加吧。
+
+```
+# Friends
+friends: [
+    {
+        title: "BY Blog",
+        href: "https://qiubaiying.github.io/"
+    },
+    {
+        title: "Apple",
+        href: "https://apple.com/"
     }
-```
-### 3.点击箭头让图片动起来
-要让图片向左动起来，就必须要写一个动画函数实现这一功能，这一函数放到最后名字叫做 animate
-每次要移动一整张图片，图片的宽度一般就是整个区域的宽度，我们可以获取区域的宽度进行移动。
-图片向右动起来，原理相同
-
-```javascript
-     // offsetWidth 水平方向 width + 左右padding + 左右border-width
-     // offsetHeight 垂直方向 height + 上下padding + 上下border-width
-     var slideshowWidth = slideshow.offsetWidth;
-     var  num = 0;
-    	right.addEventListener('click', function(){
-    	//当最后一张图片播放完之后，另num = 0；从第一张开始播放
-        if(num == ul.children.length - 1){
-        //注意：在返回第一张图片的时候，不仅num要变成0，ul的定位也要变成0，第一张图片。
-        //否则：图片会从 第四张，第三张，第二张，一直往回倒，看起来很不自然
-        	ul.style.left = '0px';
-            num = 0;
-        }
-        // 鼠标点击一次，num + 1
-        num ++;
-        //调用animate函数
-        animate(ul, - num * slideshowWidth);
-    })
-```
-但是我们可以注意到一个问题，当最后一张图片播放之后会出现一个空白期，再次点击后会直接跳到第二张图片，看起来不舒服，因此我们可以将第一张图片复制一下放到四张图片的后面，而这张图片的<kbd>li</kbd>不能在圆圈之前创建，否则元圆圈的数量会多出来一个。
-
-```javascript
-//复制第一张图片
-//注意：克隆第一张图片的时候，一定要将后代一起克隆，只复制 li 是没用的，我们要的是 其中的 img
-    var first = ul.children[0].cloneNode(true);
-    ul.appendChild(first);
+]
 ```
 
-### 4.实现点击圆圈的时候图片变换
-这部分代码放在第二步的for循环中，这一步其实在第二步之后更为方便。
-点击圆圈图片变换，本质也是调用了animate函数，因此为了计算移动的距离，必须要定义圆圈的索引。此时用到了<kbd>setAttribute()方法</kbd>，添加指定的属性并为其赋指定的值
 
-```javascript
-//圆圈的索引 index
-        li.setAttribute('index',i);
-        //排他思想
-        li.addEventListener('click',function(){
-            //干掉所有人
-            for(var i=0;i < ol.children.length;i++){
-                ol.children[i].className = '';
-            }
-            //留下我自己
-            this.className = 'current';
-            //点击圆圈，移动图片 移动距离 索引 * 宽度
-            var index = this.getAttribute('index');
+### Keynote Layout
 
-            animate(ul, - index * slideshowWidth);
+HTML5幻灯片的排版：
+
+![](https://camo.githubusercontent.com/f30347a118171820b46befdf77e7b7c53a5641a9/687474703a2f2f6875616e677875616e2e6d652f696d672f626c6f672d6b65796e6f74652e6a7067)
+
+这部分是用于占用html格式的幻灯片的，一般用到的是 Reveal.js, Impress.js, Slides, Prezi 等等.我认为一个现代化的博客怎么能少了放html幻灯的功能呢~
+
+其主要原理是添加一个 `iframe`，在里面加入外部链接。你可以直接写到头文件里面去，详情请见下面的yaml头文件的写法。
+
 ```
-### 5.解决点击箭头时，图片与圆圈不匹配的问题
-同样是排他思想，可以定义一个方法，在箭头事件中进行调用
-注意：先 ++/--,在判断，和先判断在++/--有细微的差别。
-
-```javascript
-function circleChange(){
-        for(var i = 0; i < ul.children.length;i ++){
-            ol.children[i].className = '';
-            ol.children[circle].className = 'current';
-        }
-    }
-//右侧箭头
-		circle ++;
-        if(circle == ol.children.length){
-            circle = 0;
-        }
-        circleChange();
-//左侧箭头
-		circle --;
-        if(circle < 0){
-            circle = ol.children.length - 1;
-        }
-        circleChange();
-```
-再全局定义一个circle变量。
-
-###  6.自动播放功能
-自动播放功能相当于手动点击右箭头的点击事件
-
-```javascript
-var timer = setInterval(function(){
-        //手动调用点击事件
-        right.click();
-    },2000)
-```
-鼠标移入停止自动播放，因为之前写过鼠标移入移出事件，所以直接将代码加入到其中就行
-
-```javascript
-//删除定时器
-clearInterval(timer);
-        timer = null; //清除定时器
-```
-鼠标移出继续开始
-
-```javascript
-// timer 之前不能加 var 否则当鼠标移出之后会图片会加速
-timer = setInterval(function(){
-            //手动调用点击事件
-            right.click();
-        },2000)
+---
+layout:     keynote
+iframe:     "http://huangxuan.me/js-module-7day/"
+---
 ```
 
-### end：animate动画函数
+iframe在不同的设备中，将会自动的调整大小。保留内边距是为了让手机用户可以向下滑动，以及添加更多的内容。
 
-```javascript
-function animate(obj,target,callback){
-// obj 是移动的对象 target 移动的距离 callback 回调函数
-    clearInterval(obj.timer);  //清除定时器，放在重复调用
-    obj.timer = setInterval(function(){
-        // 步长值取整 向上取整 Math.ceil
-        // var step = Math.ceil((target - obj.offsetLeft)/ 10);
-        var step = (target - obj.offsetLeft) / 10;
-        step = step > 0 ? Math.ceil(step) : Math.floor(step);
-        if(obj.offsetLeft == target){
-            clearInterval(obj.timer);
-            if(callback){
-                callback();
-            }
-        }
-        obj.style.left = obj.offsetLeft + step + 'px';
-    },20)
-}
+
+### Comment
+
+博客不仅支持 [Disqus](http://disqus.com) 评论系统,还加入了 [Gitalk](https://gitalk.github.io/) 评论系统，[支持 Markdwon 语法](https://guides.github.com/features/mastering-markdown/)，cool~
+
+#### Disqus
+
+优点：国际比较流行，界面也很大气、简洁，如果有人评论，还能实时通知，直接回复通知的邮件就行了；
+
+缺点：评论必须要去注册一个disqus账号，分享一般只有Facebook和Twitter，另外在墙内加载速度略慢了一点。想要知道长啥样，可以看以前的版本点[这里](http://brucezhaor.github.io/about.html) 最下面就可以看到。
+
+> Node：有很多人反映 Disqus 插件加载不出来，可能墙又架高了，有条件的话翻个墙就好了~
+
+**使用：**
+
+**首先**，你需要去注册一个Disqus帐号。**不要直接使用我的啊！**
+
+**其次**，你只需要在下面的 yaml 头文件中设置一下就可以了。
+
+```
+# 评论系统
+# Disqus（https://disqus.com/）
+disqus_username: qiubaiying
 ```
 
-# 总结
-Js轮播图的学习，学习到了<kbd>setInterval</kbd><kbd>clearInterval</kbd>定时器的使用，<kbd>offsetWidth</kbd>的用法等另思维更加清晰，对之前学习的基础语法进行了巩固。
+#### Gitalk
+
+优点：界面干净简洁，利用 Github issue API 做的评论插件，使用 Github 帐号进行登录和评论，最喜欢的支持 Markdown 语法，对于程序员来说真是太 cool 了。
+
+缺点：配置比较繁琐，每篇文章的评论都需要初始化。
+
+**使用：**
+
+参考我的这篇文章：[《为博客添加 Gitalk 评论插件》](http://qiubaiying.top/2017/12/19/%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0-Gitalk-%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/)
+
+
+### Analytics
+
+网站分析，现在支持百度统计和Google Analytics。需要去官方网站注册一下，然后将返回的code贴在下面：
+
+```
+# Baidu Analytics
+ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
+
+# Google Analytics
+ga_track_id: 'UA-49627206-1'            # 你用Google账号去注册一个就会给你一个这样的id
+ga_domain: huangxuan.me			# 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto。
+```
+
+### Customization
+
+如果你喜欢折腾，你可以去自定义这个模板的 Code。
+
+**如果你可以理解 `_include/` 和 `_layouts/`文件夹下的代码（这里是整个界面布局的地方），你就可以使用 Jekyll 使用的模版引擎 [Liquid](https://github.com/Shopify/liquid/wiki)的语法直接修改/添加代码，来进行更有创意的自定义界面啦！**
+
+### Header Image
+
+博客每页的标题底图是可以自己选的，看看几篇示例post你就知道如何设置了。
+  
+标题底图的选取完全是看个人的审美了。每一篇文章可以有不同的底图，你想放什么就放什么，最后宽度要够，大小不要太大，否则加载慢啊。
+
+> 上传的图片最好先压缩，这里推荐 imageOptim 图片压缩软件，让你的博客起飞。
+
+但是需要注意的是本模板的标题是**白色**的，所以背景色要设置为**灰色**或者**黑色**，总之深色系就对了。当然你还可以自定义修改字体颜色，总之，用github pages就是可以完全的个性定制自己的博客。
+
+### SEO Title
+
+我的博客标题是 **“BY Blog”** 但是我想要在搜索的时候显示 **“柏荧的博客 | BY Blog”** ，这个就需要 SEO Title 来定义了。
+
+其实这个 SEO Title 就是定义了<head><title>标题</title></head>这个里面的东西和多说分享的标题，你可以自行修改的。
+
+### 关于收到"Page Build Warning"的 Email
+
+由于jekyll升级到3.0.x,对原来的 pygments 代码高亮不再支持，现只支持一种-rouge，所以你需要在 `_config.yml`文件中修改`highlighter: rouge`.另外还需要在`_config.yml`文件中加上`gems: [jekyll-paginate]`.
+
+同时,你需要更新你的本地 jekyll 环境.
+
+使用`jekyll server`的同学需要这样：
+
+1. `gem update jekyll` # 更新jekyll
+2. `gem update github-pages` #更新依赖的包
+
+使用`bundle exec jekyll server`的同学在更新 jekyll 后，需要输入`bundle update`来更新依赖的包.
+
+> Note：
+> 可以使用 `jekyll -s` 命令在本地实时配置博客，提高效率。详见 [Jekyll.com](http://jekyllcn.com/)
+
+参考文档：[using jekyll with pages](https://help.github.com/articles/using-jekyll-with-pages/) & [Upgrading from 2.x to 3.x](http://jekyllrb.com/docs/upgrading/2-to-3/)
+
+
+## 致谢
+
+1. 这个模板是从这里 [Hux](https://github.com/Huxpro/huxpro.github.io) fork 的, 感谢这个作者。 
+2. 感谢 Jekyll、Github Pages 和 Bootstrap!
+
+## License
+
+遵循 MIT 许可证。有关详细,请参阅 [LICENSE](https://github.com/qiubaiying/qiubaiying.github.io/blob/master/LICENSE)。
+
