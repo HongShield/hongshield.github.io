@@ -1,10 +1,11 @@
 ---
+color:      black
 layout:     post
 title:      前端-H5+C3-1
 subtitle:   纯html5+css3实现SuNing首页
 date:       2020-05-20
 author:     HongShield
-header-img: img/post-bg-ios9-web.jpg
+header-img: img/post-bg-h5c3.jpg
 catalog: true
 tags:
     - HTML5
