@@ -4,7 +4,7 @@ title:      前端-H5+C3-4
 subtitle:   纯html5+css3实现SuNing首页
 date:       2020-05-28
 author:     HongShield
-header-img: img/post-bg-h5c3.jpg
+header-img: img/post-bg-h5c3.png
 catalog: true
 tags:
     - HTML5
