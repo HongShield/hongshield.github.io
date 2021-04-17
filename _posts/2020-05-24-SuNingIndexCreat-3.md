@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      前端-H5+C3-3
-subtitle:   纯html5+css3实现SuNing首页
+title:      SuNing Index Creat -3
+subtitle:   HTML5 + CSS3
 date:       2020-05-24
 author:     HongShield
 header-img: img/post-bg-h5c3.png
