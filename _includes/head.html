@@ -8,7 +8,8 @@
     <meta name="theme-color" content="{{ site.chrome-tab-theme-color }}">
     
     <title>{% if page.title %}{{ page.title }} - {{ site.SEOTitle }}{% else %}{{ site.SEOTitle }}{% endif %}</title>
-
+    <!-- jekyll-seo-tag -->
+    {% seo %}
     <!-- Web App Manifest -->
     <link rel="manifest" href="{{ site.baseurl }}/pwa/manifest.json">
 

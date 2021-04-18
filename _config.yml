@@ -41,6 +41,10 @@ anchorjs: true                          # if you want to customize anchor. check
 # from PR#40, to support local preview for Jekyll 3.0
 gems: [jekyll-paginate]
 
+plugins:
+  - jekyll-seo-tag
+  - jekyll-admin
+  - jekyll-feed
 
 
 
@@ -103,3 +107,4 @@ friends: [
         href: "https://blog.csdn.net/Mx_zH/"
     }
 ]
+

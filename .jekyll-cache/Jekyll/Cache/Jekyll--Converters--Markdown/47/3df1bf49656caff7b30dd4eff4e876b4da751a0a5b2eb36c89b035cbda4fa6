@@ -1,0 +1,9 @@
+I"�<h1 id="四推荐栏recommend的制作">四、推荐栏（recommend）的制作</h1>
+<p>接下来的这一块区域，是整个网页中最醒目的一块，是官方的强力推荐区域。
+<img src="https://img-blog.csdnimg.cn/20200524190857438.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L014X3pI,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /></p>
+<h2 id="1结构分析">1.结构分析</h2>
+<p>我将这块内容分为左中右三块内容，左边就是一个列表（一级菜单嵌套二级菜单，同样我们只做一级菜单），中间可分为两块，大图，和底部的列表，右边分为3块，上面的登录，中间的热门，底部的快捷区域。</p>
+<h2 id="2先进行center的制作">2.先进行center的制作。</h2>
+<p>我个人喜欢由中间向两边制作，所以我先进行中间的制作。
+我们先将图片插入，并令图片居中</p>
+:ET
