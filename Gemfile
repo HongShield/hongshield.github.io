@@ -10,5 +10,6 @@ gem "jekyll", "~> 4.2"
 gem 'jekyll-admin', group: :jekyll_plugins
 gem 'jekyll-seo-tag'
 gem 'jekyll-feed'
+gem 'jekyll-archives'
 
 gem "webrick", "~> 1.7"
