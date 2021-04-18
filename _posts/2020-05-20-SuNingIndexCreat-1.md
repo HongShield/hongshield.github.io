@@ -1,6 +1,5 @@
 ---
-permalinks: year
-layout:     post archive
+layout:     post
 title:      SuNing Index Creat -1
 subtitle:   HTML5 + CSS3
 date:       2020-05-20
