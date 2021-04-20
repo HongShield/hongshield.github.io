@@ -112,10 +112,10 @@ service-worker: true
 
 
 # Friends
-friends: [
-    {
-        title: "CSDN · HongShield",
-        href: "https://blog.csdn.net/Mx_zH/"
-    }
-]
+# friends: [
+#     {
+#         title: "CSDN · HongShield",
+#         href: "https://blog.csdn.net/Mx_zH/"
+#     }
+# ]
 
