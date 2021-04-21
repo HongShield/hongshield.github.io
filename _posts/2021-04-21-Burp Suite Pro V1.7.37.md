@@ -71,6 +71,8 @@ tags:
 
 &emsp;&emsp;这些工具可以运行在一个单一的选项卡窗口或者一个被分离的单个窗口。所有的工具和套件的配置信息是可选为通过程序持久性的加载。在Burp Suite 专业版中，你可以保存整个组件工具的设置状态，在下次加载过来恢复你的工具。
 
+摘自：[百度百科](https://baike.baidu.com/item/burpsuite/5971741?fr=aladdin)
+
 ## 外部链接
 
 - [官方网站](https://portswigger.net/burp)
@@ -78,6 +80,5 @@ tags:
 - [Burp 测试方法](https://portswigger.net/support/burp-testing-methodologies)解释了使用 Burp Suite 测试各种 Web 应用程序漏洞的方法。
 - [知识库]()包含 Burp Scanner 可以检测到的所有问题的定义。
 
-摘自：[百度百科](https://baike.baidu.com/item/burpsuite/5971741?fr=aladdin)
 
 下载地址：[Burp Suite Pro V1.7.37](https://pan.baidu.com/s/180LDTxv_wGCts4Drw2N83w) 提取码： <kbd>ebig</kbd> 
