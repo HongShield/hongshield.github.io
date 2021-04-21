@@ -77,7 +77,8 @@ gitalk:
 ba_track_id: 5ed84f538e893e0fddd9cebc28f67e37
 
 # Google Analytics
-ga_track_id:  'G-F1RTY8KDQ3'            # Format: G-xxxxxxxxxx
+# ga_track_id:  ''            # Format: G-xxxxxxxxxx
+# 代码在footer.html 底部 
 
 # jekyll-archives
 jekyll-archives:
