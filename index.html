@@ -3,17 +3,27 @@ layout: page
 description: "Thinking will not overcome fear but action will."
 ---
 
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-
 <!-- pv的方式，单个用户连续点击n篇文章，记录n次访问量 -->
 <span id="busuanzi_container_site_pv">
     本站总访问量<span id="busuanzi_value_site_pv"></span>次
-</span>
+</span>;
+
 <!-- uv的方式，单个用户连续点击n篇文章，只记录1次访客数 -->
 <span id="busuanzi_container_site_uv">
     本站访客数<span id="busuanzi_value_site_uv"></span>人次
   </span>
+
+  {% assign count = 0 %}
+  {% for post in site.posts %}
+      {% assign single_count = post.content | strip_html | strip_newlines | remove: " " | size %}
+      {% assign count = count | plus: single_count %}
+  {% endfor %}
+  
+  {% if count > 10000 %}
+      {{ count | divided_by: 10000 }} 万 {{ count | modulo: 10000 }}
+  {% else %}
+      {{ count }}
+  {% endif %} 
 
 {% for post in paginator.posts %}
 <div class="post-preview">

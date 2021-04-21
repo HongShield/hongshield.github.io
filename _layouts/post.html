@@ -46,13 +46,13 @@ layout: default
                     <h2 class="subheading">{{ page.subtitle }}</h2>
                     {% comment %} endif {% endcomment %}
                     <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
-
-                    <!-- pv的方式，单个用户点击1篇文章，本篇文章记录1次阅读量 -->
-                    <span class="meta" ><span  id="busuanzi_container_page_pv">
-                        Total reading volume of this article:<span id="busuanzi_value_page_pv"></span>次</span>
-                    </span>
-                    <span class="meta">English words in this article:{{ page.content | number_of_words }}</span>
-                    <span class="meta"></span>Number of words in this article</span>
+                </br>
+                    <!-- 添加中英文字数统计 -->
+                    <span class="meta">English words in this article:{{ page.content | number_of_words }}.</span>
+                </br>
+                    <span class="meta">Number of words in this article:{{ page.content | strip_html | strip_newlines | remove: " " | size }}.</span>
+                </br>
+                {{ page.content | strip_html | strip_newlines | remove: " " | size | divided_by: 350 | plus: 1 }} 
                 </div>
             </div>
         </div>
@@ -182,24 +182,6 @@ layout: default
         </div>
     </div>
 </article>
-
-
-{% if site.disqus_username %}
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "{{site.disqus_username}}";
-    var disqus_identifier = "{{page.id}}";
-    var disqus_url = "{{site.url}}{{page.url}}";
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<!-- disqus 公共JS代码 end -->
-{% endif %}
 
 
 {% if site.anchorjs %}
