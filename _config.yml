@@ -5,9 +5,9 @@ header-img: img/post-bg-desk.jpeg
 email: chinahongshield@gmail.com
 description: "漫漫人生路，上下求索！"
 keyword: "HS, HS Blog, HongShield的博客, HongShield, Web, network"
-url: "http://cnzhouhong.github.io"          # your host, for absolute URL
+url: "http://hongshield.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "https://github.com/cnzhouhong/cnzhouhong.github.io.git" # you code repository
+github_repo: "https://github.com/hongshield/hongshield.github.io.git" # you code repository
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
@@ -19,7 +19,7 @@ sidebar-avatar: /img/apple-touch-icon.png      # use absolute URL, seeing it's u
 RSS: true
 # weibo_username:     qiubaiying
 #zhihu_username:     qiubaiying
-github_username:    cnzhouhong
+github_username:    hongshield
 csdn_username:    Mx_zH
 #facebook_username:  baiying.qiu.7
 jianshu_username:   d51b03bd50bd
@@ -69,9 +69,9 @@ gitalk:
   enable: true    #是否开启Gitalk评论
   clientID: 68fc4840684bf5468c95                           #生成的clientID
   clientSecret: be0046fd5d8fba57b5df25b4ac280aa6f07f1438    #生成的clientSecret
-  repo: cnzhouhong.github.io    #仓库名称
-  owner: cnzhouhong    #github用户名
-  admin: cnzhouhong
+  repo: hongshield.github.io    #仓库名称
+  owner: hongshield    #github用户名
+  admin: hongshield
   distractionFreeMode: true #是否启用类似FB的阴影遮罩
 
 
