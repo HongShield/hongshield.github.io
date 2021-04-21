@@ -13,7 +13,7 @@ github_repo: "https://github.com/hongshield/hongshield.github.io.git" # you code
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "Goals determine what you going to be!"
 sidebar-avatar: /img/apple-touch-icon.png      # use absolute URL, seeing it's used in both `/` and `/about/`
-
+ 
 
 # SNS settings
 RSS: true
