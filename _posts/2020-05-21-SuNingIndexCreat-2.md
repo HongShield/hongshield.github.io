@@ -58,9 +58,9 @@ tags:
   margin: 30px 120px 30px 60px;
   position: relative;
 }
-```
+``` 
 &emsp;&emsp;4.我们进行区域内部样式的添加，要清楚input 是有默认样式的，不仅仅是边框，而且当你鼠标点击的时候，还会有一个边框，这时候就需要用 outline:none;来取消默认样式。input左边的“放大镜”可以通过添加矢量图标进行添加。改变input输入框的大小，让它的大小和父容器相匹配。同时，我们可以看到，输入框中当我们没有输入的时候，默认会有一些输入内容，这时候我们就可以用input属性placeholder来添加。
-
+ 
 矢量图标的调整：
 ```css
 .body_head .body_head_search .search_body span {

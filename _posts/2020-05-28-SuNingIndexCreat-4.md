@@ -59,7 +59,7 @@ tags:
 }
 ```
 &emsp;&emsp;然后就是分区域进行设置调整，先将背景图添加好。通过绝对定位的方法定位到页面中间。
-
+ 
 ```css
 .presale .back {
   position: absolute;
@@ -69,7 +69,7 @@ tags:
 ```
 小图片的插入，宽度设置100%，就是宽度继承父容器的宽度。
 
-```css
+```css 
 .presale .top {
   width: 100%;
   height: 150px;

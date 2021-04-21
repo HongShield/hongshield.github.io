@@ -208,7 +208,7 @@ tags:
             <a href="">智能数码</a>
           </li>
 </ul>
-```
+``` 
 先设置recommend_left的大小,背景颜色,令left浮动在左边
 
 ```css
