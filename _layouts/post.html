@@ -6,9 +6,6 @@ layout: default
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
 <!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
 
-<!-- 统计浏览量和字数，busaunzi插件 -->
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
 
 <!-- Post Header -->
 <style type="text/css">
@@ -47,12 +44,7 @@ layout: default
                     {% comment %} endif {% endcomment %}
                     <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
                 </br>
-                    <!-- 添加中英文字数统计 -->
-                    <span class="meta">English words in this article:{{ page.content | number_of_words }}.</span>
-                </br>
-                    <span class="meta">Number of words in this article:{{ page.content | strip_html | strip_newlines | remove: " " | size }}.</span>
-                </br>
-                {{ page.content | strip_html | strip_newlines | remove: " " | size | divided_by: 350 | plus: 1 }} 
+                <span>本文总共 {{ page.content | strip_html | strip_newlines | remove: " " | size }} 字 <b>·</b> 阅读全文大约需要 {{ page.content | strip_html | strip_newlines | remove: " " | size | divided_by: 350 | plus: 1 }} 分钟</span>
                 </div>
             </div>
         </div>
@@ -117,15 +109,6 @@ layout: default
                 </script>
                 {% endif %}
                 <!-- Gitalk end -->
-
-                {% if site.disqus_username %}
-                <!-- disqus 评论框 start -->
-                <div class="comment">
-                    <div id="disqus_thread" class="disqus-thread"></div>
-                </div>
-                <!-- disqus 评论框 end -->
-                {% endif %}
-
             </div>  
 
     <!-- Side Catalog Container -->
