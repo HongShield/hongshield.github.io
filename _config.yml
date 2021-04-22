@@ -10,7 +10,7 @@ baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/hongshield/hongshield.github.io.git" # you code repository
 
 # Sidebar settings
-sidebar: true                           # whether or not using Sidebar.
+sidebar: true                                  # whether or not using Sidebar.
 sidebar-about-description: "探索，让未来多一种可能。"
 sidebar-avatar: /img/apple-touch-icon.png      # use absolute URL, seeing it's used in both `/` and `/about/`
  
@@ -32,11 +32,6 @@ permalink: pretty
 paginate: 10
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
-
-
-# # Gems
-# # from PR#40, to support local preview for Jekyll 3.0
-# gems: [jekyll-paginate]
 
 
 plugins:
@@ -79,17 +74,6 @@ ba_track_id: 5ed84f538e893e0fddd9cebc28f67e37
 # Google Analytics
 # ga_track_id:  ''            # Format: G-xxxxxxxxxx
 # 代码在footer.html 底部 
-
-# jekyll-archives
-jekyll-archives:
-  enabled: all
-  layout: archive
-  permalinks:
-    year: '/:year/'
-    month: '/:year/:month/'
-    day: '/:year/:month/:day/'
-    tag: '/tag/:name/'
-    category: '/category/:name/'
 
 
 # Featured Tags
