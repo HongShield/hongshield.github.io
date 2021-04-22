@@ -15,16 +15,15 @@ header-img: "img/post-bg-rwd.jfif"
 <div class="zh post-container">
 
     <!--copied from markdown -->
-    <blockquote><p>冰冻三尺 非一日之寒<br>
-    积土成山 非斯须之作</p></blockquote>
 
-    <p>Hey，我是<strong>HongShield(HS)</strong>，希望成为网络安全工程师，本科在读。</p>
+    <blockquote><p>凡是过往，皆为序章。<br>
+        更深的海，更狂的浪，潮声轰鸣，总在前方。<br>
+        相信相信的信念，相信相信的力量，相信相信的航向，<br>
+        无论晴空万里，抑或风雨如晦，我们注定一往无前！<br>
+        <br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;——<strong>雷军</strong></p>
+    </blockquote>
 
-    <p>我喜欢看小说，听音乐。</p>
-
-    <p>这是我的利用 <a href="https://pages.github.com/">GitHub Pages</a> 与 <a href="http://jekyll.com.cn/">Jekyll</a> 搭建的 个人博客。我在GitHub主页<a href="https://github.com/cnzhouhong">👉GitHub·HS</a> 与 CSDN主页<a href="https://http://blog.csdn.net/Mx_zH">👉BY</a>。如果有什么问题，欢迎提出探讨~</p>
-
-    <p></p>
     
     <h5>Talks</h5>
 
@@ -119,29 +118,4 @@ header-img: "img/post-bg-rwd.jfif"
 </script>
 {% endif %}
 <!-- Gitalk end -->
-
- <!-- disqus 评论框 start  -->
-{% if site.disqus.enable %}
-
-<div class="comment">
-    <div id="disqus_thread" class="disqus-thread">
-    </div>
-</div>
-<!-- disqus 评论框 end -->
-
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "{{site.disqus.username}}";
-    var disqus_identifier = "{{site.disqus.username}}/{{page.url}}";
-    var disqus_url = "{{site.url}}{{page.url}}";
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<!-- disqus 公共JS代码 end -->
-{% endif %}
 
