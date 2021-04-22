@@ -4,7 +4,7 @@ title:      SuNing Index Creat -4
 subtitle:   HTML5 + CSS3
 date:       2020-05-28
 author:     HongShield
-header-img: img/post-bg-h5c3.png
+header-img: img/post-bg-h5c3.jpg
 catalog: true
 tags:
     - HTML5
