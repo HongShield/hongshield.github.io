@@ -1,0 +1,8 @@
+I"7<h1 id="五剩余区域presale和main-first的制作">五、剩余区域presale和main-first的制作</h1>
+<p>  接下来我们进行剩下部分的制作，这一块区域背景色是灰色的，不再是纯白#ffffff色的。先制作前两块块区域。顺便把左边的悬浮导航制作一下。
+<img src="https://img-blog.csdnimg.cn/20200528184636234.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L014X3pI,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /></p>
+<h2 id="1presale的制作">1.presale的制作</h2>
+<p><img src="https://img-blog.csdnimg.cn/20200528185255807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L014X3pI,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /></p>
+<h3 id="结构分析">①结构分析</h3>
+<p>  1.这一块我原以为只有图片的上半部分是图片，下半部分红色区域是css实现的，结果在网页扒图的时候发现，这两部分是一个整体，是一张图片。</p>
+:ET

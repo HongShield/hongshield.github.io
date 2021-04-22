@@ -1,0 +1,195 @@
+I"Qd<h1 id="前言">前言</h1>
+<p>  最近决心重新学习一次js，打牢基础，先从最常见的轮播图开始。</p>
+<h1 id="一轮播图是什么">一、轮播图是什么？</h1>
+<p>  顾名思义，就是轮流播放的图片，多应用在电商平台的海报，当我们进入一个网页中，轮播图一般是是最醒目的。</p>
+<h1 id="二htmlcss">二、Html+Css</h1>
+<p>  因为我们主要是实现滚动的功能，html和css就简单的说一下，轮播图一般包括三块内容，轮播的海报，海报两边的箭头，底部的圆圈。如下图：
+<img src="https://img-blog.csdnimg.cn/20201201165342361.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L014X3pI,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /></p>
+<h2 id="1html结构">1.html结构</h2>
+<p>  轮播的图片可以放在<kbd>ul</kbd>列表当中，两侧的箭头用<kbd>a</kbd>标签，底部的圆圈用<kbd>ol</kbd>列表，放到一个 <kbd>div</kbd>标签中。
+箭头和圆圈是通过雪碧图引入。</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"slideshow"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;ul&gt;</span>
+            <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">"./img/1.jpg"</span> <span class="na">alt=</span><span class="s">""</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
+            //...
+        <span class="nt">&lt;/ul&gt;</span>
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"nav"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;ol</span> <span class="na">class=</span><span class="s">"circle"</span><span class="nt">&gt;</span>
+            //ol 中的li使用js动态生成，这样便于后期的维护
+            <span class="nt">&lt;/ol&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"javascript:;"</span> <span class="na">class=</span><span class="s">"left"</span><span class="nt">&gt;&lt;/a&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"javascript:;"</span> <span class="na">class=</span><span class="s">"right"</span><span class="nt">&gt;&lt;/a&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+<h2 id="2css">2.css</h2>
+<p>  轮播图一定不止一张，我们可以观察到轮播图变化的时候，方向是左右变换，因此我们就需要将所有图片放到一行上面，这时候只需要改变父容器的宽度就可以。</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.slideshow</span> <span class="nt">ul</span><span class="p">{</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">600%</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span> <span class="err">//</span> <span class="err">可以省略</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>  为了方便定位圆圈以及箭头的位置，我们可以先在htmll中写上 <kbd>li</kbd>标签，等定位好以后在删除。剩下的就是雪碧图的应用了</p>
+<h1 id="三-js">三、 Js</h1>
+<h3 id="1做出鼠标移动到轮播图区域中箭头显示的效果">1.做出鼠标移动到轮播图区域中箭头显示的效果</h3>
+<p>  要实现这一效果，只需要将对应选择器的样式从 <kbd>display:block</kbd>
+改为 <kbd>display:none</kbd>就可以，要复原的话，当鼠标离开区域的时候在将属性改回来就行。有1个知识点需要注意：</p>
+<ul>
+  <li>在进行事件绑定，鼠标移入：mouseenter  鼠标移除：mouseleave
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">load</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+<span class="c1">// load 目的是为了让页面加载完成之后，在加载js</span>
+  <span class="kd">var</span> <span class="nx">left</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.left</span><span class="dl">'</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">right</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.right</span><span class="dl">'</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">slideshow</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.slideshow</span><span class="dl">'</span><span class="p">);</span>
+  <span class="c1">//slideshow 是整个轮播图的父容器</span>
+  <span class="nx">slideshow</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">mouseenter</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+      <span class="nx">left</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">block</span><span class="dl">'</span><span class="p">;</span>
+      <span class="nx">right</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">block</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">})</span>
+
+  <span class="nx">slideshow</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">mouseleave</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+      <span class="nx">left</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">none</span><span class="dl">'</span><span class="p">;</span>
+      <span class="nx">right</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">none</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">})</span>
+<span class="p">})</span>
+</code></pre></div>    </div>
+    <h3 id="2动态生成圆圈">2.动态生成圆圈</h3>
+    <p>  要动态生成圆圈，必须要和图片的数量进行绑定，就要获取<kbd>ul</kbd>标签，通过<kbd>ul.children.length</kbd>来得到圆圈的数量</p>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">var</span> <span class="nx">ul</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">ul</span><span class="dl">'</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">ol</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.circle</span><span class="dl">'</span><span class="p">);</span>
+
+  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">ul</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="c1">//创建li</span>
+      <span class="kd">var</span> <span class="nx">li</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">li</span><span class="dl">'</span><span class="p">);</span>
+      <span class="c1">//将li插入到 ol 当中</span>
+      <span class="nx">ol</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">li</span><span class="p">);</span>
+      <span class="c1">//给 第一个 li 绑定样式</span>
+      <span class="nx">ol</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">className</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">current</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+</code></pre></div>    </div>
+    <h3 id="3点击箭头让图片动起来">3.点击箭头让图片动起来</h3>
+    <p>  要让图片向左动起来，就必须要写一个动画函数实现这一功能，这一函数放到最后名字叫做 animate
+每次要移动一整张图片，图片的宽度一般就是整个区域的宽度，我们可以获取区域的宽度进行移动。
+图片向右动起来，原理相同</p>
+  </li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="c1">// offsetWidth 水平方向 width + 左右padding + 左右border-width</span>
+     <span class="c1">// offsetHeight 垂直方向 height + 上下padding + 上下border-width</span>
+     <span class="kd">var</span> <span class="nx">slideshowWidth</span> <span class="o">=</span> <span class="nx">slideshow</span><span class="p">.</span><span class="nx">offsetWidth</span><span class="p">;</span>
+     <span class="kd">var</span>  <span class="nx">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    	<span class="nx">right</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+    	<span class="c1">//当最后一张图片播放完之后，另num = 0；从第一张开始播放</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">num</span> <span class="o">==</span> <span class="nx">ul</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">){</span>
+        <span class="c1">//注意：在返回第一张图片的时候，不仅num要变成0，ul的定位也要变成0，第一张图片。</span>
+        <span class="c1">//否则：图片会从 第四张，第三张，第二张，一直往回倒，看起来很不自然</span>
+        	<span class="nx">ul</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">0px</span><span class="dl">'</span><span class="p">;</span>
+            <span class="nx">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// 鼠标点击一次，num + 1</span>
+        <span class="nx">num</span> <span class="o">++</span><span class="p">;</span>
+        <span class="c1">//调用animate函数</span>
+        <span class="nx">animate</span><span class="p">(</span><span class="nx">ul</span><span class="p">,</span> <span class="o">-</span> <span class="nx">num</span> <span class="o">*</span> <span class="nx">slideshowWidth</span><span class="p">);</span>
+    <span class="p">})</span>
+</code></pre></div></div>
+<p>  但是我们可以注意到一个问题，当最后一张图片播放之后会出现一个空白期，再次点击后会直接跳到第二张图片，看起来不舒服，因此我们可以将第一张图片复制一下放到四张图片的后面，而这张图片的<kbd>li</kbd>不能在圆圈之前创建，否则元圆圈的数量会多出来一个。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//复制第一张图片</span>
+<span class="c1">//注意：克隆第一张图片的时候，一定要将后代一起克隆，只复制 li 是没用的，我们要的是 其中的 img</span>
+    <span class="kd">var</span> <span class="nx">first</span> <span class="o">=</span> <span class="nx">ul</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="nx">ul</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">first</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="4实现点击圆圈的时候图片变换">4.实现点击圆圈的时候图片变换</h3>
+<p>  这部分代码放在第二步的for循环中，这一步其实在第二步之后更为方便。
+点击圆圈图片变换，本质也是调用了animate函数，因此为了计算移动的距离，必须要定义圆圈的索引。此时用到了<kbd>setAttribute()方法</kbd>，添加指定的属性并为其赋指定的值</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//圆圈的索引 index</span>
+        <span class="nx">li</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">index</span><span class="dl">'</span><span class="p">,</span><span class="nx">i</span><span class="p">);</span>
+        <span class="c1">//排他思想</span>
+        <span class="nx">li</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+            <span class="c1">//干掉所有人</span>
+            <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">ol</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+                <span class="nx">ol</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">className</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="c1">//留下我自己</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">current</span><span class="dl">'</span><span class="p">;</span>
+            <span class="c1">//点击圆圈，移动图片 移动距离 索引 * 宽度</span>
+            <span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">index</span><span class="dl">'</span><span class="p">);</span>
+
+            <span class="nx">animate</span><span class="p">(</span><span class="nx">ul</span><span class="p">,</span> <span class="o">-</span> <span class="nx">index</span> <span class="o">*</span> <span class="nx">slideshowWidth</span><span class="p">);</span>
+</code></pre></div></div>
+<h3 id="5解决点击箭头时图片与圆圈不匹配的问题">5.解决点击箭头时，图片与圆圈不匹配的问题</h3>
+<p>  同样是排他思想，可以定义一个方法，在箭头事件中进行调用
+注意：先 ++/–,在判断，和先判断在++/–有细微的差别。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">circleChange</span><span class="p">(){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">ul</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span> <span class="o">++</span><span class="p">){</span>
+            <span class="nx">ol</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">className</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
+            <span class="nx">ol</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">circle</span><span class="p">].</span><span class="nx">className</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">current</span><span class="dl">'</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="c1">//右侧箭头</span>
+		<span class="nx">circle</span> <span class="o">++</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">circle</span> <span class="o">==</span> <span class="nx">ol</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span><span class="p">){</span>
+            <span class="nx">circle</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nx">circleChange</span><span class="p">();</span>
+<span class="c1">//左侧箭头</span>
+		<span class="nx">circle</span> <span class="o">--</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">circle</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="nx">circle</span> <span class="o">=</span> <span class="nx">ol</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nx">circleChange</span><span class="p">();</span>
+</code></pre></div></div>
+<p>再全局定义一个circle变量。</p>
+
+<h3 id="6自动播放功能">6.自动播放功能</h3>
+<p>自动播放功能相当于手动点击右箭头的点击事件</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="c1">//手动调用点击事件</span>
+        <span class="nx">right</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
+    <span class="p">},</span><span class="mi">2000</span><span class="p">)</span>
+</code></pre></div></div>
+<p>  鼠标移入停止自动播放，因为之前写过鼠标移入移出事件，所以直接将代码加入到其中就行</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//删除定时器</span>
+<span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
+        <span class="nx">timer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">//清除定时器</span>
+</code></pre></div></div>
+<p>鼠标移出继续开始</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// timer 之前不能加 var 否则当鼠标移出之后会图片会加速</span>
+<span class="nx">timer</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+            <span class="c1">//手动调用点击事件</span>
+            <span class="nx">right</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
+        <span class="p">},</span><span class="mi">2000</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="endanimate动画函数">end：animate动画函数</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">animate</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span><span class="nx">target</span><span class="p">,</span><span class="nx">callback</span><span class="p">){</span>
+<span class="c1">// obj 是移动的对象 target 移动的距离 callback 回调函数</span>
+    <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">timer</span><span class="p">);</span>  <span class="c1">//清除定时器，放在重复调用</span>
+    <span class="nx">obj</span><span class="p">.</span><span class="nx">timer</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="c1">// 步长值取整 向上取整 Math.ceil</span>
+        <span class="c1">// var step = Math.ceil((target - obj.offsetLeft)/ 10);</span>
+        <span class="kd">var</span> <span class="nx">step</span> <span class="o">=</span> <span class="p">(</span><span class="nx">target</span> <span class="o">-</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">offsetLeft</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="nx">step</span> <span class="o">=</span> <span class="nx">step</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">?</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="nx">step</span><span class="p">)</span> <span class="p">:</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">step</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">offsetLeft</span> <span class="o">==</span> <span class="nx">target</span><span class="p">){</span>
+            <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">timer</span><span class="p">);</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+                <span class="nx">callback</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="nx">obj</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">offsetLeft</span> <span class="o">+</span> <span class="nx">step</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">px</span><span class="dl">'</span><span class="p">;</span>
+    <span class="p">},</span><span class="mi">20</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h1 id="总结">总结</h1>
+<p>  Js轮播图的学习，学习到了<kbd>setInterval</kbd><kbd>clearInterval</kbd>定时器的使用，<kbd>offsetWidth</kbd>的用法等另思维更加清晰，对之前学习的基础语法进行了巩固。</p>
+:ET

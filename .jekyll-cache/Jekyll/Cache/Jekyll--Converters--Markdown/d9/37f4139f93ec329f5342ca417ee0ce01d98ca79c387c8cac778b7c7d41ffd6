@@ -1,0 +1,276 @@
+I"�s<h1 id="三主体内容顶部的制作">三、主体内容顶部的制作</h1>
+<p>  接下来我们要制作的就是包含logo，搜索框，以及下面菜单的这一块内容
+<img src="https://img-blog.csdnimg.cn/20200521122744149.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L014X3pI,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /></p>
+<h2 id="1框架分析">1.框架分析</h2>
+<p>  这块内容可以划分为5块，苏宁logo，搜索框，全部商品分类，右边的图片以及中间的菜单。我们又可以将logo和搜索框划分为一块（这一块我起名为body_head），剩下的3部分为一块（可以起名为body_menu）.</p>
+<h2 id="2body_head-制作">2.body_head 制作</h2>
+<h3 id="1具体分析排版">1.具体分析（排版）</h3>
+<p>  1.我们给body_head容器一个固定大小，一般就是版心的大小，然后将搜索框在容器中居中，再用定位将logo定位到容器左端。</p>
+
+<p>  2.这里有一个小技巧，在确定容器大小之后，可以给容器先添加边框，以便于我们对每一块的调整。等到CSS样式添加完成之后，将添加的边框去掉。如果边框去掉后出现了一些问题再根据问题进行微调。</p>
+
+<p>  3.虽然我们没有设计稿，但是我们可以直接在官网打开控制台，直接查看元素的宽高，颜色，字体大小等。没有必要自己去测量，这样可以节省很多时间。关键的是一个思路，以及语法的细节。</p>
+<h3 id="2css样式添加">2.CSS样式添加</h3>
+<h4 id="1搜索框的制作">1.搜索框的制作</h4>
+<p>  1.我们先给搜索框一个容器大小，添加一个边框便于我们的调整。利用margin 0 auto； 进行居中。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.body_head</span> <span class="nc">.body_head_search</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">600px</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="nb">auto</span><span class="p">;</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
+  <span class="nl">border</span> <span class="p">:</span><span class="m">1px</span> <span class="nb">solid</span> <span class="no">red</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>  2.接下来我们将本块分为三部分，一个是搜索框input，一个是搜索按钮 button，另一块就是紧挨搜索框的菜单。先进行input的制作，先给这一块加一个边框，这个边框加在了search_body的上面。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"search_body"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"iconfont icon-sousuo"</span><span class="nt">&gt;&lt;/span&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">placeholder=</span><span class="s">"输入关键字搜索商品/品牌/店铺"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+<p>  3. 接下来，我们通过定位将div定位，上下一定是居中，左右就要通过一些计算，定位的时候，要给父容添加相对定位，给自身添加绝对定位。一定要找准父容器。
+调整好位置之后，由于这个区域本身是有边框的，我们直接修改边框的大小，颜色，注意，搜索框没有右边框。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.body_head</span> <span class="nc">.body_head_search</span> <span class="nc">.search_body</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">30px</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">420px</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">40px</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">2px</span> <span class="nb">solid</span> <span class="m">#fa0</span><span class="p">;</span>
+  <span class="nl">border-right</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">30px</span> <span class="m">120px</span> <span class="m">30px</span> <span class="m">60px</span><span class="p">;</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>  4.我们进行区域内部样式的添加，要清楚input 是有默认样式的，不仅仅是边框，而且当你鼠标点击的时候，还会有一个边框，这时候就需要用 outline:none;来取消默认样式。input左边的“放大镜”可以通过添加矢量图标进行添加。改变input输入框的大小，让它的大小和父容器相匹配。同时，我们可以看到，输入框中当我们没有输入的时候，默认会有一些输入内容，这时候我们就可以用input属性placeholder来添加。</p>
+
+<p>矢量图标的调整：</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.body_head</span> <span class="nc">.body_head_search</span> <span class="nc">.search_body</span> <span class="nt">span</span> <span class="p">{</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">18px</span><span class="p">;</span>
+  <span class="nl">line-height</span><span class="p">:</span> <span class="m">40px</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#cccccc</span><span class="p">;</span>
+  <span class="nl">padding-left</span><span class="p">:</span> <span class="m">5px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>input输入框的调整：</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.body_head</span> <span class="nc">.body_head_search</span> <span class="nc">.search_body</span> <span class="nt">input</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">390px</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">40px</span><span class="p">;</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">12px</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">0px</span><span class="p">;</span>
+  <span class="nl">outline</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>  5.input输入框的右边，有一个搜索按钮。有两种方法来实现，第一种方法，我们取消按钮的默认样式，并调整合适的大小，将按钮定位到input右边，同时引入图片将图片定位到同一位置实现覆盖。
+第二种方法就是通过修改按钮的样式来达到同样的效果。会有一个手型的变化</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.body_head</span> <span class="nc">.body_head_search</span> <span class="nt">button</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">120px</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">44px</span><span class="p">;</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span> <span class="err">//手型的添加</span>
+  <span class="nl">right</span><span class="p">:</span> <span class="m">4px</span><span class="p">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">30px</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="nl">background</span><span class="p">:</span> <span class="m">#ff9900</span><span class="p">;</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">18px</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#ffffff</span><span class="p">;</span>
+  <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
+  <span class="nl">outline</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>  我们可以观察到，当鼠标移动上去的时候背景也会发生变化。我们通过添加hover来实现。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.body_head</span> <span class="nc">.body_head_search</span> <span class="nt">button</span><span class="nd">:hover</span> <span class="p">{</span>
+  <span class="nl">background</span><span class="p">:</span> <span class="m">#ff8800</span><span class="p">;</span>
+  <span class="nl">cursor</span><span class="p">:</span> <span class="nb">pointer</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://img-blog.csdnimg.cn/20200521132458907.png" alt="无hover" /></p>
+
+<p>  6.接下来进行search_foot,也就是紧挨输入框的菜单,菜单中的九个选项都是a链接,我们可以直接在div中嵌套9个a链接.然后通过调整选项之间的间距等,给div添加绝对定位,调整位置.可以看到每一个选项之间看到一条灰色的竖线.有两种方法添加,一种是”手动添加”,在每两个a链接之间通过 i 标签 添加一条竖线 “ | “,这种无疑是比较low的,我采用第二种方法,直接给a链接添加一个左边框.
+定位菜单的位置</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.body_head</span> <span class="nc">.body_head_search</span> <span class="nc">.search_foot</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">left</span><span class="p">:</span> <span class="m">53px</span><span class="p">;</span>
+  <span class="nl">bottom</span><span class="p">:</span> <span class="m">3px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>菜单选项a链接的设置</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.body_head</span> <span class="nc">.body_head_search</span> <span class="nc">.search_foot</span> <span class="nt">a</span> <span class="p">{</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">12px</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#999999</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span> <span class="m">7px</span> <span class="m">0</span> <span class="m">8px</span><span class="p">;</span>
+  <span class="nl">border-left</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="m">#dddddd</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>  7.这时看到“电风扇”的左边也有了边框，实际上是没有的，所有我们使用:nth-child() 伪类选择器来进行调整。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.body_head</span> <span class="nc">.body_head_search</span> <span class="nc">.search_foot</span> <span class="nt">a</span><span class="nd">:nth-child</span><span class="o">(</span><span class="err">1</span><span class="o">)</span> <span class="p">{</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>  8.有两个选项的颜色与其他的不同，我们同样通过伪类选择器进行选择添加。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.body_head</span> <span class="nc">.body_head_search</span> <span class="nc">.search_foot</span> <span class="nt">a</span><span class="nd">:nth-child</span><span class="o">(</span><span class="err">2</span><span class="o">)</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#ff6600</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.body_head</span> <span class="nc">.body_head_search</span> <span class="nc">.search_foot</span> <span class="nt">a</span><span class="nd">:nth-child</span><span class="o">(</span><span class="err">4</span><span class="o">)</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#ff6600</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>  9.a链接在选中的时候还会变色，我们再添加一个hover，</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.body_head</span> <span class="nc">.body_head_search</span> <span class="nc">.search_foot</span> <span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#ff6600</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>至此，搜索框的制作就完成了
+<img src="https://img-blog.csdnimg.cn/20200521141319727.png" alt="在这里插入图片描述" /></p>
+<h4 id="2body_head_logo的添加">2.body_head_logo的添加</h4>
+<p>  这块内容就很简单了，把logo定位到对应位置之后，调整大小就ok</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"body_head_logo"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"./img/logo.png"</span> <span class="na">alt=</span><span class="s">"苏宁易购"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.body_head</span> <span class="nc">.body_head_logo</span> <span class="nt">img</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nl">left</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">190px</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">90px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h4 id="3接下来进行下一大块的制作">3,接下来进行下一大块的制作</h4>
+<p><img src="https://img-blog.csdnimg.cn/20200521141923735.png" alt="在这里插入图片描述" />
+  1.这一块内容分为了三块，左边的a链接，中间的menu，右边的图片(图片中也是有链接的)</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"body_head_foot"</span><span class="nt">&gt;</span>
+
+      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"body_head_foot_left"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"iconfont icon-liebiao"</span><span class="nt">&gt;&lt;/span&gt;</span>
+        全部商品分类
+      <span class="nt">&lt;/a&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"body_head_foot_menu"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>天天低价<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>红孩子<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>苏宁超市
+          !-- <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"./img/index.png"</span> <span class="na">alt=</span><span class="s">""</span><span class="nt">&gt;</span> 
+        <span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>电器城<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>生活家电<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>时尚服饰<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>苏宁国际<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>苏宁Outlets<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>金融<span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+		<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"./img/156810604991255454.png"</span> <span class="na">alt=</span><span class="s">""</span><span class="nt">&gt;</span>
+     	<span class="nt">&lt;/a&gt;</span>
+</code></pre></div></div>
+<p>  2.接下来一块一块的调整，左边调整，先将a链接转成块，否则a的大小由内容的大小决定，自定义的大小是无效的，为了便于调整，给“全部商品分类”添加了 i 标签，注意一点：i 标签默认是斜体，必须通过 font-style:normal 来调整成为正常字体.为了使字体居中,可以设置行高等于容器的高度.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.body_head_foot</span> <span class="nc">.body_head_foot_left</span> <span class="p">{</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">190px</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">38px</span><span class="p">;</span>
+  <span class="nl">line-height</span><span class="p">:</span> <span class="m">38px</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#ffffff</span><span class="p">;</span>
+  <span class="nl">background</span><span class="p">:</span> <span class="m">#ff9900</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.body_head_foot</span> <span class="nc">.body_head_foot_left</span> <span class="nt">span</span> <span class="p">{</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">13px</span><span class="p">;</span>
+  <span class="nl">padding-left</span><span class="p">:</span> <span class="m">4px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.body_head_foot</span> <span class="nc">.body_head_foot_left</span> <span class="nt">i</span> <span class="p">{</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">13px</span><span class="p">;</span>
+  <span class="nl">font-style</span><span class="p">:</span> <span class="nb">normal</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><img src="https://img-blog.csdnimg.cn/20200521155915755.png" alt="在这里插入图片描述" />
+此外,还有一个hover效果</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.body_head</span> <span class="nc">.body_head_foot.body_head_foot</span> <span class="nc">.body_head_foot_left</span><span class="nd">:hover</span> <span class="p">{</span>
+  <span class="nl">background</span><span class="p">:</span> <span class="m">#ff6600</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>3.进行menu和right 的定位</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.body_head</span> <span class="nc">.body_head_foot</span> <span class="nc">.body_head_foot_menu</span> <span class="p">{</span>
+  <span class="nl">padding-left</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">left</span><span class="p">:</span> <span class="m">190px</span><span class="p">;</span>
+  <span class="nl">bottom</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.body_head</span> <span class="nc">.body_head_foot</span> <span class="nc">.body_head_foot_right</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">right</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>4.下来我们先进行right的定位,</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.body_head</span> <span class="nc">.body_head_foot</span> <span class="nc">.body_head_foot_right</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">right</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.body_head</span> <span class="nc">.body_head_foot</span> <span class="nc">.body_head_foot_right</span> <span class="nt">img</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">170px</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">38px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>5.下面对menu进行处理</p>
+
+<p>  对menu进行CSS样式的添加,很简单,调整字体大小,设置margin或者padding调整选项的距离.需要注意的地方是:苏宁超市后面有一个小图标,那个是通过 <abbr title="许多小的图标放在了一张图里,目的是减少访问服务次的次数">雪碧图</abbr> 来进行引用,就是下面这张图.</p>
+
+<p><img src="https://img-blog.csdnimg.cn/20200521162555784.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L014X3pI,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" />
+  5.先进行menu其他样式的添加先把a链接模块化,之后就是正常的浮动,padding等</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.body_head</span> <span class="nc">.body_head_foot</span> <span class="nc">.body_head_foot_menu</span> <span class="p">{</span>
+  <span class="nl">padding-left</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">left</span><span class="p">:</span> <span class="m">190px</span><span class="p">;</span>
+  <span class="nl">bottom</span><span class="p">:</span> <span class="m">12px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.body_head</span> <span class="nc">.body_head_foot</span> <span class="nc">.body_head_foot_menu</span> <span class="nt">a</span> <span class="p">{</span>
+  <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span> <span class="m">14px</span> <span class="m">0</span> <span class="m">11px</span><span class="p">;</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">15px</span><span class="p">;</span>
+  <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
+  <span class="nl">line-height</span><span class="p">:</span> <span class="m">38px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><img src="https://img-blog.csdnimg.cn/20200521183318101.png" alt="在这里插入图片描述" />
+6.menu在选择时有变色效果,添加hover</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.body_head</span> <span class="nc">.body_head_foot</span> <span class="nc">.body_head_foot_menu</span> <span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="m">255</span><span class="p">,</span> <span class="m">102</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>  7.最后我们来进行<abbr title="许多小的图标放在了一张图里,目的是减少访问服务次的次数">雪碧图</abbr>的添加.添加<abbr title="许多小的图标放在了一张图里,目的是减少访问服务次的次数">雪碧图</abbr>首先需要绝对定位position,通过背景图 backgrou-image:url();来引用,然后用 background-position 来定位.然后设置所引用区域的大小.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.body_head</span> <span class="nc">.body_head_foot</span> <span class="nc">.body_head_foot_menu</span> <span class="nc">.hot</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">14px</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">17px</span><span class="p">;</span>
+  <span class="nl">background-image</span><span class="p">:</span> <span class="sx">url(../img/index.png)</span><span class="p">;</span>
+  <span class="nl">background-position</span><span class="p">:</span> <span class="m">-345px</span> <span class="m">-213px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://img-blog.csdnimg.cn/20200521184032124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L014X3pI,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /></p>
+
+:ET

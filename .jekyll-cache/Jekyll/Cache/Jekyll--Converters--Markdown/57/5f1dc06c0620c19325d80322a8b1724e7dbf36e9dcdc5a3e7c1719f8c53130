@@ -1,0 +1,9 @@
+I"�<h1 id="三主体内容顶部的制作">三、主体内容顶部的制作</h1>
+<p>  接下来我们要制作的就是包含logo，搜索框，以及下面菜单的这一块内容
+<img src="https://img-blog.csdnimg.cn/20200521122744149.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L014X3pI,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /></p>
+<h2 id="1框架分析">1.框架分析</h2>
+<p>  这块内容可以划分为5块，苏宁logo，搜索框，全部商品分类，右边的图片以及中间的菜单。我们又可以将logo和搜索框划分为一块（这一块我起名为body_head），剩下的3部分为一块（可以起名为body_menu）.</p>
+<h2 id="2body_head-制作">2.body_head 制作</h2>
+<h3 id="1具体分析排版">1.具体分析（排版）</h3>
+<p>  1.我们给body_head容器一个固定大小，一般就是版心的大小，然后将搜索框在容器中居中，再用定位将logo定位到容器左端。</p>
+:ET

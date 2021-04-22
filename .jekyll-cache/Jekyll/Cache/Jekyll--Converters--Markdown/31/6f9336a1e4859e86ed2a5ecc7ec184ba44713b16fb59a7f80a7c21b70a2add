@@ -1,0 +1,18 @@
+I"�<h1 id="前言">前言</h1>
+<p>  最近决心重新学习一次js，打牢基础，先从最常见的轮播图开始。</p>
+<h1 id="一轮播图是什么">一、轮播图是什么？</h1>
+<p>  顾名思义，就是轮流播放的图片，多应用在电商平台的海报，当我们进入一个网页中，轮播图一般是是最醒目的。</p>
+<h1 id="二htmlcss">二、Html+Css</h1>
+<p>  因为我们主要是实现滚动的功能，html和css就简单的说一下，轮播图一般包括三块内容，轮播的海报，海报两边的箭头，底部的圆圈。如下图：
+<img src="https://img-blog.csdnimg.cn/20201201165342361.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L014X3pI,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /></p>
+<h2 id="1html结构">1.html结构</h2>
+<p>  轮播的图片可以放在<kbd>ul</kbd>列表当中，两侧的箭头用<kbd>a</kbd>标签，底部的圆圈用<kbd>ol</kbd>列表，放到一个 <kbd>div</kbd>标签中。
+箭头和圆圈是通过雪碧图引入。
+```html</p>
+<div class="slideshow">
+        <ul>
+            <li><a href="#"><img src="./img/1.jpg" alt="" /></a></li>
+            //...
+        </ul>
+</div>
+:ET
